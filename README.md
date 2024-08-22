@@ -20,10 +20,6 @@
     - [Test Scripts](#test-scripts)
     - [Fetch Bucket Content](#fetch-bucket-content)
     - [Connection Utilities](#connection-utilities)
-  - [💡 Technical Implementation](#-technical-implementation)
-    - [ETL Process](#etl-process)
-    - [IAM Configuration](#iam-configuration)
-    - [Performance Considerations](#performance-considerations)
 
 ## Overview
 
@@ -119,23 +115,3 @@ Download S3 artifacts to your local environment:
 ### Connection Utilities
 - `connect.sh`: Automates the SSH connection process
 - `connect.txt`: Provides detailed connection instructions
-
-
-## 💡 Technical Implementation
-
-### ETL Process
-The Spark ETL script performs several key operations:
-- Data extraction from S3
-- Schema validation and transformation
-- Aggregation and analysis
-- Results storage back to S3
-
-### IAM Configuration
-- EC2 instance roles configured with S3 access
-- Permission boundaries for secure operation
-- Cross-service authentication
-
-### Performance Considerations
-- Cluster sizing based on data volume
-- Executor memory allocation
-- Partition optimization

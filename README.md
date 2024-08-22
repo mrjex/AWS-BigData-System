@@ -71,11 +71,11 @@ Amazon Cloud9 provides a terminal environment for connecting to the EMR cluster'
 
 2. **Import EC2 key-pair**
    - Upload your `.pem` file to the Cloud9 environment
-   - Set proper permissions: `chmod 400 emr-masterclass-keypair.pem`
+   - Set proper permissions: `chmod 400 emr-mrjex-keypair.pem`
 
 3. **Connect to primary node**
    ```bash
-   ssh -i emr-masterclass-keypair.pem hadoop@ec2-51-20-251-32.eu-north-1.compute.amazonaws.com
+   ssh -i emr-mrjex-keypair.pem hadoop@ec2-51-20-251-32.eu-north-1.compute.amazonaws.com
    ```
 
 4. **Create Spark script**
@@ -88,7 +88,7 @@ Amazon Cloud9 provides a terminal environment for connecting to the EMR cluster'
 
 5. **Submit Spark job**
    ```bash
-   spark-submit spark-etl.py s3://emr-masterclass-code-with-yu/input/tripdata.csv s3://emr-masterclass-code-with-yu/output/spark
+   spark-submit spark-etl.py s3://emr-mrjex/input/tripdata.csv s3://emr-mrjex/output/spark
    ```
 
 6. **Verify results**
@@ -107,7 +107,7 @@ For automated processing, you can configure an EMR Step using a custom JAR:
    - Add a step with the following command:
 
    ```
-   spark-submit s3://emr-masterclass-code-with-yu/files/spark-etl.py s3://emr-masterclass-code-with-yu/input/tripdata.csv s3://emr-masterclass-code-with-yu/output/spark-EMR-Step
+   spark-submit s3://emr-mrjex/files/spark-etl.py s3://emr-mrjex/input/tripdata.csv s3://emr-mrjex/output/spark-EMR-Step
    ```
 
 2. **Monitor execution**
@@ -177,7 +177,3 @@ The Spark ETL script performs several key operations:
 - Cluster sizing based on data volume
 - Executor memory allocation
 - Partition optimization
-
----
-
-*Developed with AWS, Apache Spark and Hadoop*

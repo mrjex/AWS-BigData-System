@@ -11,10 +11,10 @@
     nano spark-etl.py # Create a .py file in the Cloud9CLI with the corresponding content
     ls && cat spark-etl.py # Double check that the file and its contents are valid
 
-    spark-submit spark-etl.py s3://emr-masterclass-code-with-yu/input/ s3://emr-masterclass-code-with-yu/output/spark-cloud9CLI
+    spark-submit spark-etl.py s3://emr-mrjex/input/ s3://emr-mrjex/output/spark-cloud9CLI
 
 
 
 -----   S3 TO EMR   -----
 
-    spark-submit s3://emr-masterclass-code-with-yu/files/spark-etl.py s3://emr-masterclass-code-with-yu/input/tripdata.csv s3://emr-masterclass-code-with-yu/output/spark-EMR-Step
+    spark-submit s3://emr-mrjex/files/spark-etl.py s3://emr-mrjex/input/tripdata.csv s3://emr-mrjex/output/spark-EMR-Step

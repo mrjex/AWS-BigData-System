@@ -4,10 +4,10 @@
 
 
 
-S3_BUCKET_NAME="emr-masterclass-code-with-yu"
-S3_OUTPUT_URI="s3://emr-masterclass-code-with-yu/output/"
-S3_INPUT_URI="s3://emr-masterclass-code-with-yu/input/tripdata.csv"
-S3_FILES_URI="s3://emr-masterclass-code-with-yu/files/spark-etl.py"
+S3_BUCKET_NAME="emr-mrjex"
+S3_OUTPUT_URI="s3://emr-mrjex/output/"
+S3_INPUT_URI="s3://emr-mrjex/input/tripdata.csv"
+S3_FILES_URI="s3://emr-mrjex/files/spark-etl.py"
 EMR_STEP_NAME="spark-step"
 
 

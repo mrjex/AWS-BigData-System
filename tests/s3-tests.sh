@@ -3,7 +3,7 @@
 #   - Connects to the S3 bucket via AWS CLI and validates the content
 
 
-S3_BUCKET_NAME="emr-masterclass-code-with-yu"
+S3_BUCKET_NAME="emr-mrjex"
 
 CONTAINED_FILES=("files" "input" "output")
 INCORRECT_FILES=("thisFolderIsInvalid" "NonExistentFolder" "MyInvalid3")

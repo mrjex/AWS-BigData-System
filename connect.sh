@@ -1,14 +1,14 @@
 #####     CONNECT     #####
 
 
-EC2_KEY_PAIR="emr-masterclass-keypair.pem"
+EC2_KEY_PAIR="emr-mrjex-keypair.pem"
 HADOOP_IP="hadoop@ec2-13-60-69-9"
 REGION="eu-north-1"
 
 SPARK_SCRIPT="spark-etl.py"
 
-S3_BUCKET="emr-masterclass-code-with-yu"
-S3_OUTPUT_URI="s3://emr-masterclass-code-with-yu/output/"
+S3_BUCKET="emr-mrjex"
+S3_OUTPUT_URI="s3://emr-mrjex/output/"
 
 
 
@@ -30,7 +30,6 @@ cloud9CLI() {
 
 
 # Function:
-#   - Text
 #   - You as a developer need to create a 'Step' in the AWS Management Console as a 'Custom .jar' file
 #     to invoke the spark submission via the corresponding S3 bucket's contained .py file
 #

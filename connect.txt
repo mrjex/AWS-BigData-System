@@ -1,0 +1,20 @@
+----------     CONNECT     ----------
+
+    This file contains the fixed values/commands in the context of this project and my particular setup
+
+
+
+-----   CLOUD9 CLI   -----
+
+    ssh -i emr-masterclass-keypair.pem hadoop@ec2-13-60-69-9.eu-north-1.compute.amazonaws.com
+
+    nano spark-etl.py # Create a .py file in the Cloud9CLI with the corresponding content
+    ls && cat spark-etl.py # Double check that the file and its contents are valid
+
+    spark-submit spark-etl.py s3://emr-masterclass-code-with-yu/input/ s3://emr-masterclass-code-with-yu/output/spark-cloud9CLI
+
+
+
+-----   S3 TO EMR   -----
+
+    spark-submit s3://emr-masterclass-code-with-yu/files/spark-etl.py s3://emr-masterclass-code-with-yu/input/tripdata.csv s3://emr-masterclass-code-with-yu/output/spark-EMR-Step

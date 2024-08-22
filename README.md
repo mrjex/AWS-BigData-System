@@ -14,7 +14,7 @@ To start the system, you have two options:
 
 Amazon Web Services supports a special terminal environment called Cloud9. In essence it's a cloud shell and allows you to connect and manage your services through a command line interface. In this project, it is used to connect to a primary node of the EMR cluster using SSH, and in turn connect to the Spark job. To get started, follow the material provided below:
 
-![emr-ec2-cloud9-part1](readme-videos/1.A emr-ec2-cloud9-intro.mp4)
+![emr-ec2-cloud9-part1](readme-videos/1.A%20emr-ec2-cloud9-intro.mp4)
 
 1) Open Cloud9 shell
 
@@ -25,12 +25,12 @@ Amazon Web Services supports a special terminal environment called Cloud9. In es
 4) Create .py file: nano spark-etl.py and add code in it
 
 
-![emr-ec2-cloud9-part2](readme-videos/1.B cloud9-artifacts.mp4)
+![emr-ec2-cloud9-part2](readme-videos/1.B%20cloud9-artifacts.mp4)
 
 
-5) Submit spark job: spark-submit spark-etl.py s3://emr-masterclass-code-with-yu/input/tripdata.csv s3://emr-masterclass-code-with-yu/output/spark
+1) Submit spark job: spark-submit spark-etl.py s3://emr-masterclass-code-with-yu/input/tripdata.csv s3://emr-masterclass-code-with-yu/output/spark
 
-6) Check the corresponding S3 bucket's content of /output
+2) Check the corresponding S3 bucket's content of /output
 
 - Picture 3. notes: Selected EC2 instance master node and modified its corresponding IAM role permissions (attached S3FullAccess policy)
 
@@ -46,19 +46,19 @@ spark-submit s3://emr-masterclass-code-with-yu/files/spark-etl.py s3://emr-maste
 ```
 
 *EMR Step Walkthrough:*
-![emr-step-artifacts](readme-videos/2. EMR-Step-Artifacts.mp4)
+![emr-step-artifacts](readme-videos/2.%20EMR-Step-Artifacts.mp4)
 
 
 ## Automated Bash Scripts
 
 **Tests:** Since the main components of this project is monitored in Amazon Management Console, additional tests were not a necessity. I coded a Bash script in `/tests` that validates the connection and naming conventions of the content of a S3 bucket:
 
-![tests-2](readme-videos/4. S3-tests-shell-script.mp4)
+![tests-2](readme-videos/4.%20S3-tests-shell-script.mp4)
 
 
 **Fetch Bucket:** In case the developer wants to view the content of the s3 bucket on his/her local computer, `fetch-s3-artifacts.sh` automates this process in one go, providing multiple options:
 
-![tests-1](readme-videos/3. Fetch-s3-shell-script.mp4)
+![tests-1](readme-videos/3.%20Fetch-s3-shell-script.mp4)
 
 
 **Connect:** The procedure of connecting to the system is more complicated, since you need to setup instances on your Amazon Management Console and retrieve your own unique SSH keys to connect to the clients. To make this process as easy as possible for you, I present two files for you: `connect.sh` and `connect.txt`
@@ -67,7 +67,7 @@ spark-submit s3://emr-masterclass-code-with-yu/files/spark-etl.py s3://emr-maste
 ## Development Process
 
 *Create VPC for EMR instance:*
-![vpc-emr](readme-pictures/1. vpc-emr-instance.PNG)
+![vpc-emr](readme-pictures/1.%20vpc-emr-instance.PNG)
 
 *Add Inbound Rules for the Security group of EC2-instance:*
 ![inbound-rules-ec2](readme-pictures/2.%20Add%20Inbound%20Rules%20for%20the%20Security%20group%20of%20EC2-instance.PNG)

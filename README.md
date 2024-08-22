@@ -16,10 +16,7 @@
   - [Getting Started](#getting-started)
     - [Connect via Cloud9](#connect-via-cloud9)
     - [AWS EMR Step](#aws-emr-step)
-  - [🔧 Automation Tools](#-automation-tools)
-    - [Test Scripts](#test-scripts)
-    - [Fetch Bucket Content](#fetch-bucket-content)
-    - [Connection Utilities](#connection-utilities)
+  - [Bash Automation](#bash-automation)
 
 ## Overview
 
@@ -98,20 +95,14 @@ For automated processing, you can configure an EMR Step using a custom JAR:
    - Track the step's progress in the EMR console
    - Check for success/failure status
 
-## 🔧 Automation Tools
+## Bash Automation
 
-The project includes several bash scripts to streamline development and testing:
-
-### Test Scripts
 Validate S3 bucket connectivity and content structure:
 
 ![tests-2](readme-videos/4.%20S3-tests-shell-script.mp4)
 
-### Fetch Bucket Content
+
 Download S3 artifacts to your local environment:
 
 ![tests-1](readme-videos/3.%20Fetch-s3-shell-script.mp4)
 
-### Connection Utilities
-- `connect.sh`: Automates the SSH connection process
-- `connect.txt`: Provides detailed connection instructions

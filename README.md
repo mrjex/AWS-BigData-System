@@ -1,6 +1,6 @@
-# 🚀 AWS BigData System
+# AWS BigData System
 
-> Leveraging Elastic MapReduce, Hadoop, and Apache Spark for large-scale data processing
+> Large-scale data processing with AWS EMR, Hadoop and Apache Spark
 
 [![AWS](https://img.shields.io/badge/AWS-Cloud-orange)](https://aws.amazon.com/)
 [![EMR](https://img.shields.io/badge/EMR-Big_Data-yellow)](https://aws.amazon.com/emr/)
@@ -8,19 +8,19 @@
 [![Spark](https://img.shields.io/badge/Spark-Processing-red)](https://spark.apache.org/)
 [![S3](https://img.shields.io/badge/S3-Storage-green)](https://aws.amazon.com/s3/)
 
-## 📑 Table of Contents
-- [🚀 AWS BigData System](#-aws-bigdata-system)
-  - [📑 Table of Contents](#-table-of-contents)
-  - [🎯 Overview](#-overview)
-  - [🏗 System Architecture](#-system-architecture)
-  - [🚀 Getting Started](#-getting-started)
+## Table of Contents
+- [AWS BigData System](#aws-bigdata-system)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [System Architecture](#system-architecture)
+  - [Getting Started](#getting-started)
     - [Connect via Cloud9](#connect-via-cloud9)
     - [AWS EMR Step](#aws-emr-step)
   - [🔧 Automation Tools](#-automation-tools)
     - [Test Scripts](#test-scripts)
     - [Fetch Bucket Content](#fetch-bucket-content)
     - [Connection Utilities](#connection-utilities)
-  - [📈 Development Process](#-development-process)
+  - [Development Process](#development-process)
     - [1. Infrastructure Setup](#1-infrastructure-setup)
     - [2. S3 Integration](#2-s3-integration)
     - [3. Spark Processing](#3-spark-processing)
@@ -30,19 +30,12 @@
     - [IAM Configuration](#iam-configuration)
     - [Performance Considerations](#performance-considerations)
 
-## 🎯 Overview
+## Overview
 
-This project, developed in August 2024, demonstrates the implementation of a scalable big data processing system using Amazon Web Services. The primary goal was to harness the robust compute capabilities of **Amazon Elastic MapReduce (EMR)** while gaining expertise in **Hadoop** ecosystem technologies and **Apache Spark**.
+This project, developed in August 2024, demonstrates the implementation of a scalable big data processing system using Amazon Web Services. It processes a dataset of 20000 records through an *ETL (Extract, Transform, Load)* pipeline.
 
-The system processes a dataset of 20,000 records through an **ETL (Extract, Transform, Load)** pipeline, showcasing:
-- Cloud-based big data processing
-- Distributed computing principles
-- Data transformation at scale
-- AWS service integration
 
-## 🏗 System Architecture
-
-The solution integrates multiple AWS services into a seamless big data pipeline:
+## System Architecture
 
 ![architecture](readme-pictures/Y.%20Project%20Architecture.png)
 
@@ -53,7 +46,7 @@ Core Components:
 - **AWS Cloud9**: Provides a development and management environment
 - **Custom JAR Steps**: Enables automated processing workflow
 
-## 🚀 Getting Started
+## Getting Started
 
 The system can be operated through two distinct approaches:
 
@@ -132,7 +125,7 @@ Download S3 artifacts to your local environment:
 - `connect.sh`: Automates the SSH connection process
 - `connect.txt`: Provides detailed connection instructions
 
-## 📈 Development Process
+## Development Process
 
 The implementation followed a structured approach:
 

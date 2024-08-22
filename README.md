@@ -1,88 +1,183 @@
-# AWS BigData Project
+# 🚀 AWS BigData System
 
-This project was developed in August 2024. My intention with this venture was to learn how to harness the robust compute capabilities of Amazon **Elastic Map Reduce (EMR)** and gain more knowledge in the field of Big Data and **Hadoop**. To integrate this, I opted for **Apache Spark** processing with AWS EMR. In other words, this project demonstrates the use of Amazon Elastic Map Reduce (EMR) for processing large datasets using Apache Spark. It includes a Spark script for **ETL (Extract, Transform, Load)** operations, AWS command line instructions for setting up and managing the EMR cluster, and a dataset for testing and demonstration purposes. To bring this project into life, I used S3 bucket and stored the input dataset, the code files and the output files and connected it to EMR. In addition, a Cloud9 shell environment to manage the services through CLI and a custom JAR *EMR Step* file was necessary to properly setup the service in accordance with the requirements of the system.
+> Leveraging Elastic MapReduce, Hadoop, and Apache Spark for large-scale data processing
 
-- Total number of records: **20000** (navigate to `s3-bucket/input/tripdata.csv`)
+[![AWS](https://img.shields.io/badge/AWS-Cloud-orange)](https://aws.amazon.com/)
+[![EMR](https://img.shields.io/badge/EMR-Big_Data-yellow)](https://aws.amazon.com/emr/)
+[![Hadoop](https://img.shields.io/badge/Hadoop-Framework-blue)](https://hadoop.apache.org/)
+[![Spark](https://img.shields.io/badge/Spark-Processing-red)](https://spark.apache.org/)
+[![S3](https://img.shields.io/badge/S3-Storage-green)](https://aws.amazon.com/s3/)
+
+## 📑 Table of Contents
+- [🚀 AWS BigData System](#-aws-bigdata-system)
+  - [📑 Table of Contents](#-table-of-contents)
+  - [🎯 Overview](#-overview)
+  - [🏗 System Architecture](#-system-architecture)
+  - [🚀 Getting Started](#-getting-started)
+    - [Connect via Cloud9](#connect-via-cloud9)
+    - [AWS EMR Step](#aws-emr-step)
+  - [🔧 Automation Tools](#-automation-tools)
+    - [Test Scripts](#test-scripts)
+    - [Fetch Bucket Content](#fetch-bucket-content)
+    - [Connection Utilities](#connection-utilities)
+  - [📈 Development Process](#-development-process)
+    - [1. Infrastructure Setup](#1-infrastructure-setup)
+    - [2. S3 Integration](#2-s3-integration)
+    - [3. Spark Processing](#3-spark-processing)
+    - [4. EMR Automation](#4-emr-automation)
+  - [💡 Technical Implementation](#-technical-implementation)
+    - [ETL Process](#etl-process)
+    - [IAM Configuration](#iam-configuration)
+    - [Performance Considerations](#performance-considerations)
+
+## 🎯 Overview
+
+This project, developed in August 2024, demonstrates the implementation of a scalable big data processing system using Amazon Web Services. The primary goal was to harness the robust compute capabilities of **Amazon Elastic MapReduce (EMR)** while gaining expertise in **Hadoop** ecosystem technologies and **Apache Spark**.
+
+The system processes a dataset of 20,000 records through an **ETL (Extract, Transform, Load)** pipeline, showcasing:
+- Cloud-based big data processing
+- Distributed computing principles
+- Data transformation at scale
+- AWS service integration
+
+## 🏗 System Architecture
+
+The solution integrates multiple AWS services into a seamless big data pipeline:
 
 ![architecture](readme-pictures/Y.%20Project%20Architecture.png)
 
-To start the system, you have two options:
-1. Cloud9
-2. EMR Step
+Core Components:
+- **Amazon S3**: Stores input data, code files, and processed output
+- **Amazon EMR**: Manages the Hadoop ecosystem and executes Spark jobs
+- **Apache Spark**: Performs data processing and transformation
+- **AWS Cloud9**: Provides a development and management environment
+- **Custom JAR Steps**: Enables automated processing workflow
 
-## Connect via Cloud9
+## 🚀 Getting Started
 
-Amazon Web Services supports a special terminal environment called Cloud9. In essence it's a cloud shell and allows you to connect and manage your services through a command line interface. In this project, it is used to connect to a primary node of the EMR cluster using SSH, and in turn connect to the Spark job. To get started, follow the material provided below:
+The system can be operated through two distinct approaches:
+
+### Connect via Cloud9
+
+Amazon Cloud9 provides a terminal environment for connecting to the EMR cluster's primary node:
 
 ![emr-ec2-cloud9-part1](readme-videos/1.A%20emr-ec2-cloud9-intro.mp4)
 
-1) Open Cloud9 shell
+**Step-by-Step Process:**
 
-2) Import the EC2 key-pair .pem file
+1. **Open Cloud9 shell**
+   - Navigate to AWS Cloud9 in your AWS Management Console
+   - Open your environment
 
-3) Connect to primary node: ssh -i emr-masterclass-keypair.pem hadoop@ec2-51-20-251-32.eu-north-1.compute.amazonaws.com
+2. **Import EC2 key-pair**
+   - Upload your `.pem` file to the Cloud9 environment
+   - Set proper permissions: `chmod 400 emr-masterclass-keypair.pem`
 
-4) Create .py file: nano spark-etl.py and add code in it
+3. **Connect to primary node**
+   ```bash
+   ssh -i emr-masterclass-keypair.pem hadoop@ec2-51-20-251-32.eu-north-1.compute.amazonaws.com
+   ```
 
+4. **Create Spark script**
+   ```bash
+   nano spark-etl.py
+   ```
+   - Add your ETL code to the file
 
 ![emr-ec2-cloud9-part2](readme-videos/1.B%20cloud9-artifacts.mp4)
 
+5. **Submit Spark job**
+   ```bash
+   spark-submit spark-etl.py s3://emr-masterclass-code-with-yu/input/tripdata.csv s3://emr-masterclass-code-with-yu/output/spark
+   ```
 
-1) Submit spark job: spark-submit spark-etl.py s3://emr-masterclass-code-with-yu/input/tripdata.csv s3://emr-masterclass-code-with-yu/output/spark
+6. **Verify results**
+   - Check the S3 bucket's `/output` directory for processed data
 
-2) Check the corresponding S3 bucket's content of /output
+### AWS EMR Step
 
-- Picture 3. notes: Selected EC2 instance master node and modified its corresponding IAM role permissions (attached S3FullAccess policy)
+For automated processing, you can configure an EMR Step using a custom JAR:
 
-- spark-submit spark-etl.py [s3-input-folder] [s3-output-folder]
-
-
-## AWS EMR Step
-
-An alternative to using Cloud9 is to provide instructions for the EMR service through a *Step*. In this project I used a custom JAR that contains the instruction of submitting spark jobs. In the JAR file, you need to specify a spark submission command. Its name may very depending on your customized namings of the S3 bucket, data input file and EMR service, but the format is similar to this:
-
-```
-spark-submit s3://emr-masterclass-code-with-yu/files/spark-etl.py s3://emr-masterclass-code-with-yu/input/tripdata.csv s3://emr-masterclass-code-with-yu/output/spark-EMR-Step
-```
-
-*EMR Step Walkthrough:*
 ![emr-step-artifacts](readme-videos/2.%20EMR-Step-Artifacts.mp4)
 
+**Configuration Details:**
 
-## Automated Bash Scripts
+1. **Create a custom JAR Step**
+   - Navigate to your EMR cluster in AWS Console
+   - Add a step with the following command:
 
-**Tests:** Since the main components of this project is monitored in Amazon Management Console, additional tests were not a necessity. I coded a Bash script in `/tests` that validates the connection and naming conventions of the content of a S3 bucket:
+   ```
+   spark-submit s3://emr-masterclass-code-with-yu/files/spark-etl.py s3://emr-masterclass-code-with-yu/input/tripdata.csv s3://emr-masterclass-code-with-yu/output/spark-EMR-Step
+   ```
+
+2. **Monitor execution**
+   - Track the step's progress in the EMR console
+   - Check for success/failure status
+
+## 🔧 Automation Tools
+
+The project includes several bash scripts to streamline development and testing:
+
+### Test Scripts
+Validate S3 bucket connectivity and content structure:
 
 ![tests-2](readme-videos/4.%20S3-tests-shell-script.mp4)
 
-
-**Fetch Bucket:** In case the developer wants to view the content of the s3 bucket on his/her local computer, `fetch-s3-artifacts.sh` automates this process in one go, providing multiple options:
+### Fetch Bucket Content
+Download S3 artifacts to your local environment:
 
 ![tests-1](readme-videos/3.%20Fetch-s3-shell-script.mp4)
 
+### Connection Utilities
+- `connect.sh`: Automates the SSH connection process
+- `connect.txt`: Provides detailed connection instructions
 
-**Connect:** The procedure of connecting to the system is more complicated, since you need to setup instances on your Amazon Management Console and retrieve your own unique SSH keys to connect to the clients. To make this process as easy as possible for you, I present two files for you: `connect.sh` and `connect.txt`
+## 📈 Development Process
 
+The implementation followed a structured approach:
 
-## Development Process
+### 1. Infrastructure Setup
+- **VPC Configuration**
+  ![vpc-emr](readme-pictures/1.%20vpc-emr-instance.PNG)
 
-*Create VPC for EMR instance:*
-![vpc-emr](readme-pictures/1.%20vpc-emr-instance.PNG)
+- **Security Group Rules**
+  ![inbound-rules-ec2](readme-pictures/2.%20Add%20Inbound%20Rules%20for%20the%20Security%20group%20of%20EC2-instance.PNG)
 
-*Add Inbound Rules for the Security group of EC2-instance:*
-![inbound-rules-ec2](readme-pictures/2.%20Add%20Inbound%20Rules%20for%20the%20Security%20group%20of%20EC2-instance.PNG)
+### 2. S3 Integration
+- **Bucket Organization**
+  ![s3-connect-cloud](readme-pictures/4.%20s3-permission-fix.PNG)
 
-*Create folders in S3 bucket and connect it:*
-![s3-connect-cloud](readme-pictures/4.%20s3-permission-fix.PNG)
+### 3. Spark Processing
+- **Output Generation**
+  ![spark-output](readme-pictures/5.%20s3-spark-generated-output.PNG)
 
-*Spark generated output:*
-![spark-output](readme-pictures/5.%20s3-spark-generated-output.PNG)
+### 4. EMR Automation
+- **Custom JAR Configuration**
+  ![emr-custom-jar](readme-pictures/6.%20emr-custom-jar-step.PNG)
 
-*AWS EMR custom JAR:*
-![emr-custom-jar](readme-pictures/6.%20emr-custom-jar-step.PNG)
+- **Processing Results**
+  ![emr-step-completed](readme-pictures/7.%20emr-step-completed.PNG)
+  ![emr-artifacts](readme-pictures/8.%20s3-generated-artifacts.PNG)
 
-*EMR Step Completed:*
-![emr-step-completed](readme-pictures/7.%20emr-step-completed.PNG)
+## 💡 Technical Implementation
 
-*S3 Generated Artifacts:*
-![emr-artifacts](readme-pictures/8.%20s3-generated-artifacts.PNG)
+### ETL Process
+The Spark ETL script performs several key operations:
+- Data extraction from S3
+- Schema validation and transformation
+- Aggregation and analysis
+- Results storage back to S3
+
+### IAM Configuration
+- EC2 instance roles configured with S3 access
+- Permission boundaries for secure operation
+- Cross-service authentication
+
+### Performance Considerations
+- Cluster sizing based on data volume
+- Executor memory allocation
+- Partition optimization
+
+---
+
+*Developed with AWS, Apache Spark and Hadoop*
